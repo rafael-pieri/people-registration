@@ -6,6 +6,11 @@ Execute the following command:
 
 `./gradlew composeUp bootRun`
 
+### How to run tests
+Execute the command below:
+
+`./gradlew clean test`
+
 ### Swagger
 The API documentation is available at: 
 

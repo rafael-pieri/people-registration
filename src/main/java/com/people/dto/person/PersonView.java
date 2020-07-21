@@ -1,5 +1,6 @@
 package com.people.dto.person;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.people.dto.address.AddressView;
 import com.people.model.Address;
 import com.people.model.Person;
@@ -8,6 +9,7 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.UUID;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PersonView {
 
     private UUID id;

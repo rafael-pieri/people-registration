@@ -1,0 +1,62 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "gradle.plugin.com.avast.gradle:gradle-docker-compose-plugin:0.13.0"
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version '2.3.1.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'com.avast.gradle.docker-compose' version '0.13.0'
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+group = 'com.people'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+apply plugin: 'com.avast.gradle.docker-compose'
+
+ext {
+    swaggerVersion = '2.9.2'
+    jacksonDatatype = '2.11.1'
+    testcontainersVersion = '1.12.5'
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$rootProject.ext.jacksonDatatype"
+    implementation 'org.flywaydb:flyway-core'
+    implementation "io.springfox:springfox-swagger2:$rootProject.ext.swaggerVersion"
+    implementation "io.springfox:springfox-swagger-ui:$rootProject.ext.swaggerVersion"
+    runtimeOnly 'org.postgresql:postgresql'
+    testImplementation "org.testcontainers:testcontainers:$rootProject.ext.testcontainersVersion"
+    testImplementation "org.testcontainers:junit-jupiter:$rootProject.ext.testcontainersVersion"
+    testCompile "org.testcontainers:postgresql:$rootProject.ext.testcontainersVersion"
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dockerCompose {
+    useComposeFiles = ["docker-compose.yml"]
+    waitForTcpPorts = true
+    captureContainersOutput = false
+    removeVolumes = true
+}

@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: people-registration
+  profiles:
+    active: local
+    default: local
+  datasource:
+    url: jdbc:postgresql://localhost:5432/people_registration_db
+    username: root
+    password: root
+    driver-class-name: org.postgresql.Driver
+    testWhileIdle: true
+    validationQuery: SELECT 1
+    hikari:
+      leak-detection-threshold: 5000
+      type: com.zaxxer.hikari.HikariDataSource
+  devtools:
+    add-properties: false
+  flyway:
+    enabled: true
+  lifecycle:
+    timeout-per-shutdown-phase: 10s
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+  shutdown: graceful
+
+management:
+  health:
+    probes:
+      enabled: true
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: beans, conditions, configprops, env, health, loggers, metrics, mappings, threaddump
+  endpoint:
+    health:
+      show-details: always
+  server:
+    port: 8081
+    context-path: /
+  security:
+    enabled: false
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: TRACE
+      springframework: INFO

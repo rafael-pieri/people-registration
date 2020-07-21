@@ -1,0 +1,136 @@
+{
+	"info": {
+		"_postman_id": "b084ea7b-3882-42aa-bbce-09aeb1bd18d9",
+		"name": "People Registration",
+		"description": "Operations available for people-registration service.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create a new person registration",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Rafael\",\n  \"cpf\": \"300.200.100-00\",\n  \"birth\": \"1990-12-31\",\n  \"addresses\": [\n    {\n      \"street\": \"Fifth Avenue\",\n      \"number\": 150,\n      \"district\": \"Manhattan\",\n      \"city\": \"New York City\",\n      \"state\": \"New York\",\n      \"country\": \"USA\"    \n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{environment}}/api/v1/people/6a0a60be-362c-418d-b188-8714b284d53a",
+					"host": [
+						"{{environment}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"people",
+						"6a0a60be-362c-418d-b188-8714b284d53a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a specific person registration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Rafael\",\n  \"cpf\": \"300.200.100-00\",\n  \"birth\": \"1990-12-31\",\n  \"addresses\": [\n    {\n      \"street\": \"Fifth Avenue\",\n      \"number\": 150,\n      \"district\": \"Manhattan\",\n      \"city\": \"New York City\",\n      \"state\": \"New York\",\n      \"country\": \"USA\"    \n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{environment}}/api/v1/people",
+					"host": [
+						"{{environment}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"people"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a specific person registration",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Rafael\",\n    \"cpf\": \"300.200.100-00\",\n    \"birth\": \"1990-12-31\",\n    \"addresses\": [\n        {\n            \"street\": \"Street One\",\n            \"number\": 235,\n            \"district\": \"Jardim Paulista\",\n            \"city\": \"Americana\",\n            \"state\": \"São Paulo\",\n            \"country\": \"Brazil\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{environment}}/api/v1/people/6a0a60be-362c-418d-b188-8714b284d53a",
+					"host": [
+						"{{environment}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"people",
+						"6a0a60be-362c-418d-b188-8714b284d53a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a specific person registration",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{environment}}/api/v1/people/6a0a60be-362c-418d-b188-8714b284d53a",
+					"host": [
+						"{{environment}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"people",
+						"6a0a60be-362c-418d-b188-8714b284d53a"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"id": "be7b7f86-62b3-4c27-857f-6600edb87ed0",
+			"key": "environment",
+			"value": "http://localhost:8080"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

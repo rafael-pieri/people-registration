@@ -1,7 +1,8 @@
 package com.people.exception.handler;
 
-import com.people.exception.ResourceNotFoundException;
 import com.people.dto.error.ErrorView;
+import com.people.exception.ResourceNotFoundException;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
@@ -47,5 +48,14 @@ public class ResponseExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorView handleMessageNotFoundException(ResourceNotFoundException exception) {
         return new ErrorView(exception.getMessage());
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ErrorView handleMessageNotFoundException(ConstraintViolationException constraintViolationException) {
+        final String message = constraintViolationException.getCause().getMessage();
+        final String keyWord = "Detail: ";
+        final String errorMessage = message.substring(message.indexOf(keyWord) + keyWord.length());
+        return new ErrorView(errorMessage);
     }
 }

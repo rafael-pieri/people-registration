@@ -1,8 +1,8 @@
 # People Registration
-It is a simple CRUD application
+This application is responsible for managing people registration.
 
 ### How to run the application
-Execute the following command to run the application:
+Execute the following command:
 
 `./gradlew composeUp bootRun`
 
@@ -12,6 +12,13 @@ The API documentation is available at:
 ```http://localhost:8080/api/swagger-ui.html```
 
 ### Postman Collections
-Import the Postman collection from: 
+Import the postman collection from: 
 
-```../postman/event_management_service.postman_collection.json```
+```../postman/people-registration.postman_collection.json```
+
+### Actuator
+| Metric | URL |
+| ------------- | ------------- |
+| Health check | http://localhost:8081/health |
+| Liveness probes | http://localhost:8081/health/liveness |
+| Readiness probes | http://localhost:8081/health/readiness |
